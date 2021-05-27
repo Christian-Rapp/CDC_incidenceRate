@@ -135,9 +135,9 @@ def graph_incidence(country: Country):
 
 
 
-def findCountry(country_name):
+def findCountry(country_name, population_code):
     country = getData(country_name, True)
-    country.population = CountryInfo(country_name).population()
+    country.population = CountryInfo(population_code).population()
     
     country.incidence_data = calculate_incidence(country)
 
@@ -149,4 +149,7 @@ def findCountry(country_name):
     
 
 if __name__ == "__main__":
-    findCountry(sys.argv[1])
+    if len(sys.argv) != 3:
+        print("Usage covid.py OWID_Country_name Population_Code")
+    else:
+        findCountry(sys.argv[1], sys.argv[2])
